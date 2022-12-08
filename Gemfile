@@ -35,3 +35,6 @@ group :development do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
 end
+
+# Architectural
+gem "rails_event_store", "~> 2.6.0"
