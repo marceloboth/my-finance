@@ -11,6 +11,8 @@
   </head>
 
   <body class="h-full">
+    <%= turbo_frame_tag "modal" %>
+
     <% if user_signed_in? %>
       <div>
         <%= render Menu::MobileComponent.new %>
