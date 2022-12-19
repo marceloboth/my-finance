@@ -16,14 +16,17 @@ Rails.configuration.to_prepare do
     # store.subscribe(lambda { |event| SendOrderConfirmation.new.call(event) }, to: [OrderSubmitted])
     # store.subscribe_to_all_events(lambda { |event| Rails.logger.info(event.event_type) })
 
+    store.subscribe(Incomes::RegisterIncome, to: [Incoming::IncomeCreated])
+
     store.subscribe_to_all_events(RailsEventStore::LinkByEventType.new)
     store.subscribe_to_all_events(RailsEventStore::LinkByCorrelationId.new)
     store.subscribe_to_all_events(RailsEventStore::LinkByCausationId.new)
   end
 
   # Register command handlers below
-  # Rails.configuration.command_bus.tap do |bus|
-  #   bus.register(PrintInvoice, Invoicing::OnPrint.new)
-  #   bus.register(SubmitOrder,  ->(cmd) { Ordering::OnSubmitOrder.new.call(cmd) })
-  # end
+  Rails.configuration.command_bus.tap do |bus|
+    # bus.register(PrintInvoice, Invoicing::OnPrint.new)
+    # bus.register(SubmitOrder,  ->(cmd) { Ordering::OnSubmitOrder.new.call(cmd) })
+    bus.register(Incoming::CreateIncome, Incoming::OnCreateMoneyIncome.new)
+  end
 end

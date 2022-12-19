@@ -21,8 +21,9 @@ gem 'turbo-rails'
 gem 'devise'
 
 group :development, :test do
-  gem 'byebug'
+  gem 'pry-meta'
   gem 'rspec-rails', '~> 4.0.0'
+  gem 'capybara'
 end
 
 group :development do
@@ -38,3 +39,7 @@ end
 
 # Architectural
 gem "rails_event_store", "~> 2.6.0"
+gem 'infra', path: './infra'
+
+# UI
+gem "view_component"
