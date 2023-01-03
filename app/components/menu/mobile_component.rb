@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 module Menu
-  class MobileComponent < ViewComponent::Base
+  class MobileComponent < BaseViewComponent
   end
 end
