@@ -37,3 +37,6 @@
 
 # Rubymine files
 /.idea/*
+
+.env
+

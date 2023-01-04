@@ -2,33 +2,54 @@ version: '3.4'
 
 services:
   db:
-    image: postgres
-    container_name: financial-db
-    mem_limit: 256m
-    command: -c fsync=off --client-min-messages=warning
+    image: postgres:14.2-alpine
+    container_name: db-postgres
     volumes:
       - db:/var/lib/postgresql/data
+    command:
+      "postgres -c 'max_connections=500'"
     ports:
-      - "127.0.0.1:5432:5432"
+      - 5432:5432
     environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_INITDB_ARGS: '--encoding=UTF-8 --lc-collate=C --lc-ctype=C'
-    restart: on-failure
-    logging:
-      driver: none
-
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
   redis:
-    image: redis
-    container_name: financial-redis
+    image: redis:alpine3.8
+    container_name: redis
     mem_limit: 256m
     volumes:
       - redis-data:/var/lib/redis/data
     ports:
-      - "127.0.0.1:6379:6379"
+      - "6379:6379"
     restart: on-failure
     logging:
       driver: none
 
+  web:
+    container_name: web
+    build: .
+    command: "./bin/rails server"
+    environment:
+      - RAILS_ENV=${RAILS_ENV}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+    volumes:
+      - .:/app:cached
+      - app-storage:/rails/storage
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - redis
 volumes:
-  db:
-  redis-data:
+  db: {}
+  redis-data: {}
+  app-storage: {}
+
+networks:
+  default:
+    name: financial
