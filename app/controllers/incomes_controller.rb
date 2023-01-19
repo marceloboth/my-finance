@@ -6,7 +6,11 @@ class IncomesController < AuthenticatedController
   def new; end
 
   def create
-    command = Incoming::Commands::CreateIncome.new(value: params[:value], description: params[:description])
+    command = Incoming::Commands::CreateIncome.new(
+      description: params[:description],
+      value: params[:value],
+      received_at: Date.parse(params[:received_at].to_s)
+    )
     command_bus.call(command)
 
     redirect_to incomes_path, notice: "Success"

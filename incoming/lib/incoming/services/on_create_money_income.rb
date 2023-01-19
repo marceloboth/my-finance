@@ -9,7 +9,7 @@ module Incoming
 
       def call(command)
         @repository.with_aggregate(Income.new, "Income$#{SecureRandom.uuid}") do |income|
-          income.create(value: command.value, description: command.description)
+          income.create(value: command.value, description: command.description, received_at: command.received_at)
         end
       end
     end

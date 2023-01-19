@@ -4,7 +4,8 @@ module Incomes
     def call(event)
       Income.create(
         value: event.data.fetch(:value),
-        description: event.data.fetch(:description)
+        description: event.data.fetch(:description),
+        received_at: event.data.fetch(:received_at)
       )
     end
   end

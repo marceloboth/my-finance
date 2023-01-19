@@ -21,6 +21,7 @@ describe 'Create incoming money' do
 
     fill_in 'Description', with: 'Salary'
     fill_in 'Value', with: 10_000
+    fill_in 'Received at', with: '20/01/2022'
 
     click_button 'Save'
 
