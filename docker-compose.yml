@@ -26,25 +26,23 @@ services:
     logging:
       driver: none
 
-  web:
-    container_name: web
+  ruby:
     build: .
-    command: "./bin/rails server"
     environment:
-      - RAILS_ENV=${RAILS_ENV}
       - POSTGRES_HOST=${POSTGRES_HOST}
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+    container_name: ruby
+    working_dir: /rails
+    restart: always
+    tty: true
     volumes:
-      - .:/app:cached
+      - .:/rails
       - app-storage:/rails/storage
     ports:
       - "3000:3000"
-    depends_on:
-      - db
-      - redis
 volumes:
   db: {}
   redis-data: {}

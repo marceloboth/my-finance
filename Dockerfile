@@ -2,45 +2,32 @@
 ARG RUBY_VERSION=3.2.0
 FROM ruby:$RUBY_VERSION
 
-# Ensure node.js 19 is available for apt-get
-RUN curl -sL https://deb.nodesource.com/setup_19.x | bash -
+SHELL ["/bin/bash", "-c"]
 
-# Install libvips for Active Storage preview support
-RUN apt-get update -qq && \
-    apt-get install -y build-essential libvips bash bash-completion libffi-dev tzdata postgresql nodejs && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man && \
-    npm install --global yarn
+ENV NVM_DIR /usr/local/nvm
+ENV NODE_VERSION 19.4.0
+ENV GEM_HOME="/usr/local/bundle"
+ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$GEM_HOME/bin:$GEM_HOME/gems/bin:$PATH
 
-# Rails app lives here
-WORKDIR /rails
+RUN mkdir -p $NVM_DIR \
+    && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash \
+    && apt-get update -qq && apt-get install -y --no-install-recommends \
+    build-essential \
+    libpq-dev \
+    freetds-dev \
+    wget \
+    curl \
+    software-properties-common \
+    apt-transport-https \
+    libssh-dev \
+    chromium \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
+    && gem install bundler \
+    && source $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default \
+    && npm install --global yarn
 
-# Set production environment
-#ENV RAILS_LOG_TO_STDOUT="1" \
-#    RAILS_SERVE_STATIC_FILES="true" \
-#    RAILS_ENV="production" \
-#    BUNDLE_WITHOUT="development"
-
-# Install application gems
-COPY infra infra
-COPY Gemfile Gemfile.lock ./
-RUN bundle install
-
-# Copy application code
-COPY . .
-
-# Precompile bootsnap code for faster boot times
-RUN bundle exec bootsnap precompile --gemfile app/ lib/
-
-# Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
-
-# Entrypoint prepares the database.
-ENTRYPOINT ["/rails/bin/docker-entrypoint"]
-
-# Start the server by default, this can be overwritten at runtime
-#EXPOSE 3000
-#CMD ["./bin/rails", "server"]
-
-# Ensure binding is always 0.0.0.0, even in development, to access server from outside container
-ENV BINDING="0.0.0.0"
+ENTRYPOINT ["/bin/bash"]
