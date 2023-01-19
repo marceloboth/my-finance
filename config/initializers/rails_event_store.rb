@@ -16,7 +16,7 @@ Rails.configuration.to_prepare do
     # store.subscribe(lambda { |event| SendOrderConfirmation.new.call(event) }, to: [OrderSubmitted])
     # store.subscribe_to_all_events(lambda { |event| Rails.logger.info(event.event_type) })
 
-    store.subscribe(Incomes::RegisterIncome, to: [Incoming::IncomeCreated])
+    store.subscribe(Incomes::RegisterIncome, to: [Incoming::Events::IncomeCreated])
 
     store.subscribe_to_all_events(RailsEventStore::LinkByEventType.new)
     store.subscribe_to_all_events(RailsEventStore::LinkByCorrelationId.new)
@@ -27,6 +27,6 @@ Rails.configuration.to_prepare do
   Rails.configuration.command_bus.tap do |bus|
     # bus.register(PrintInvoice, Invoicing::OnPrint.new)
     # bus.register(SubmitOrder,  ->(cmd) { Ordering::OnSubmitOrder.new.call(cmd) })
-    bus.register(Incoming::CreateIncome, Incoming::OnCreateMoneyIncome.new)
+    bus.register(Incoming::Commands::CreateIncome, Incoming::Services::OnCreateMoneyIncome.new)
   end
 end

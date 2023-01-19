@@ -9,10 +9,10 @@ module Incoming
     end
 
     def create(value:, description:)
-      apply(IncomeCreated.new(data: { value:, description: }))
+      apply(Events::IncomeCreated.new(data: { value:, description: }))
     end
 
-    on IncomeCreated do |event|
+    on Events::IncomeCreated do |event|
       @state = :created
     end
   end
