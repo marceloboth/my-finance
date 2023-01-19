@@ -37,6 +37,10 @@ group :development do
   gem 'rubocop-rspec', require: false
 end
 
+group :test do
+  gem 'cuprite'
+end
+
 # Architectural
 gem "rails_event_store", "~> 2.6.0"
 gem 'infra', path: './infra'
