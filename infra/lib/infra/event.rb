@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "active_support/core_ext/hash"
+require 'active_support/core_ext/hash'
 
 module Infra
   class Event < RubyEventStore::Event
@@ -20,7 +20,7 @@ module Infra
 
       module Constructor
         def initialize(event_id: SecureRandom.uuid, metadata: nil, data: {})
-          super(event_id: event_id, metadata: metadata, data: data.deep_merge(self.class.schema.new(data.deep_symbolize_keys).to_h))
+          super(event_id:, metadata:, data: data.deep_merge(self.class.schema.new(data.deep_symbolize_keys).to_h))
         end
       end
 

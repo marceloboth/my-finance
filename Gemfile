@@ -30,6 +30,9 @@ group :development do
   gem 'web-console', '>= 4.1.0'
 
   gem 'foreman', require: false
+  gem 'brakeman'
+  gem 'bundler-audit'
+  gem 'ruby_audit'
   gem 'rubocop', require: false
   gem 'rubocop-packaging', require: false
   gem 'rubocop-performance', require: false
