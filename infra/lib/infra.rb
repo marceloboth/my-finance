@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "infra/version"
-
 module Infra
   require "ruby_event_store"
   require "aggregate_root"
