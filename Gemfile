@@ -30,6 +30,9 @@ group :development do
   gem 'web-console', '>= 4.1.0'
 
   gem 'foreman', require: false
+  gem 'brakeman'
+  gem 'bundler-audit'
+  gem 'ruby_audit'
   gem 'rubocop', require: false
   gem 'rubocop-packaging', require: false
   gem 'rubocop-performance', require: false
@@ -49,8 +52,8 @@ group :production do
 end
 
 # Architectural
-gem "rails_event_store", "~> 2.6.0"
+gem 'rails_event_store', '~> 2.6.0'
 gem 'infra', path: './infra'
 
 # UI
-gem "view_component"
+gem 'view_component'
