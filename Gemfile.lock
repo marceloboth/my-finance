@@ -178,8 +178,6 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.8)
-    nokogiri (1.14.0-aarch64-linux)
-      racc (~> 1.4)
     nokogiri (1.14.0-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.14.0-x86_64-linux)
@@ -251,7 +249,7 @@ GEM
     rainbow (3.1.1)
     rake (13.0.6)
     redis (4.8.0)
-    regexp_parser (2.6.1)
+    regexp_parser (2.6.2)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -347,7 +345,6 @@ GEM
     zeitwerk (2.6.6)
 
 PLATFORMS
-  aarch64-linux
   arm64-darwin-21
   x86_64-linux
 
