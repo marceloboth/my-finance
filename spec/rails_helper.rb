@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+
 require 'simplecov'
 SimpleCov.start do
-  add_filter "/config/"
-  add_filter "/spec/"
+  add_filter '/config/'
+  add_filter '/spec/'
 end
 
 # Previous content of test helper now starts here
