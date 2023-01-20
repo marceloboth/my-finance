@@ -121,6 +121,7 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.5.0)
+    docile (1.4.0)
     dry-core (1.0.0)
       concurrent-ruby (~> 1.0)
       zeitwerk (~> 2.6)
@@ -321,6 +322,12 @@ GEM
     ruby_event_store-transformations (0.1.0)
       activesupport (>= 5.0)
       ruby_event_store (>= 2.0.0, < 3.0.0)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.4)
     slop (3.6.0)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
@@ -390,6 +397,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   ruby_audit
+  simplecov
   sprockets-rails
   stimulus-rails
   turbo-rails
