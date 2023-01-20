@@ -42,6 +42,7 @@ end
 
 group :test do
   gem 'cuprite'
+  gem 'simplecov'
 end
 
 group :production do
