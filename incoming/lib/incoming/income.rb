@@ -12,7 +12,7 @@ module Incoming
       apply(Events::IncomeCreated.new(data: { value:, description:, received_at: }))
     end
 
-    on Events::IncomeCreated do |event|
+    on Events::IncomeCreated do |_event|
       @state = :created
     end
   end

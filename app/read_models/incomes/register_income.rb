@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Incomes
   class RegisterIncome # < Infra::EventHandler
     def call(event)

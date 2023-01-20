@@ -13,6 +13,6 @@ class IncomesController < AuthenticatedController
     )
     command_bus.call(command)
 
-    redirect_to incomes_path, notice: "Success"
+    redirect_to incomes_path, notice: 'Success'
   end
 end

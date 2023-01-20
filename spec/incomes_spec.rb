@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
-path = Rails.root.join("incomes/spec")
+path = Rails.root.join('incomes/spec')
 Dir.glob("#{path}/**/*_spec.rb") { |file| require file }
