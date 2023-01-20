@@ -41,6 +41,13 @@ group :test do
   gem 'cuprite'
 end
 
+group :production do
+  # gem 'yabeda-sidekiq', require: false
+  # gem 'yabeda-puma-plugin', require: false
+
+  gem 'lograge'
+end
+
 # Architectural
 gem "rails_event_store", "~> 2.6.0"
 gem 'infra', path: './infra'
