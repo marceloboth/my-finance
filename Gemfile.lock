@@ -154,6 +154,11 @@ GEM
     jsbundling-rails (1.1.1)
       railties (>= 6.0.0)
     json (2.6.3)
+    lograge (0.12.0)
+      actionpack (>= 4)
+      activesupport (>= 4)
+      railties (>= 4)
+      request_store (~> 1.0)
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -250,6 +255,8 @@ GEM
     rake (13.0.6)
     redis (4.8.0)
     regexp_parser (2.6.2)
+    request_store (1.5.1)
+      rack (>= 1.4)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -358,6 +365,7 @@ DEPENDENCIES
   infra!
   jbuilder
   jsbundling-rails
+  lograge
   pg (~> 1.1)
   pry-meta
   puma (~> 5.0)
