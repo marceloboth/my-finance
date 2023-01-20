@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.email = ['marcelo.both@gmail.com']
 
   spec.summary = 'Common package for infrastructure code'
-  spec.required_ruby_version = '>= 2.6.0'
+  spec.required_ruby_version = '>= 3.2.0'
 
   spec.require_paths = ['lib']
 
