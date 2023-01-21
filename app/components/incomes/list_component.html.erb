@@ -10,11 +10,9 @@
           <div class="font-medium text-gray-900"><%= income.description %></div>
         </td>
         <td class="hidden py-4 px-3 text-right text-sm text-gray-500 sm:table-cell"><%= l(income.received_at, format: "%d/%m/%Y") %></td>
-        <td class="hidden py-4 px-3 text-right text-sm text-gray-500 sm:table-cell">$75.00</td>
         <td class="py-4 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-6 md:pr-0"><%= income.value %></td>
       </tr>
     <% end %>
   <% end %>
-  
-  <%= t.with_total_sum { '$4,485.00' } %>
+  <%= t.with_total_sum { "$#{total_amount}" } %>
 <% end %>
