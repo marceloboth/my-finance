@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# If running the rails server then create or migrate existing database
-if [ "${*}" == "./bin/rails server" ]; then
-  ./bin/rails db:create
-  ./bin/rails db:prepare
-fi
+./bin/bundle install
+./bin/yarn install
+./bin/rails db:setup
+
+echo 'You are ready to run bin/dev from your environment'
 
 exec "${@}"

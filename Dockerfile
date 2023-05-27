@@ -20,7 +20,6 @@ RUN mkdir -p $NVM_DIR \
     software-properties-common \
     apt-transport-https \
     libssh-dev \
-    chromium \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && gem install bundler \

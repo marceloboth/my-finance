@@ -3,7 +3,7 @@ version: '3.4'
 services:
   db:
     image: postgres:14.2-alpine
-    container_name: db-postgres
+    container_name: fn-postgres
     volumes:
       - db:/var/lib/postgresql/data
     command:
@@ -11,12 +11,48 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+
+  ruby:
+    build: .
+    environment:
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - CHROME_URL=http://chrome:3333
+    container_name: fn-ruby
+    working_dir: /rails
+    restart: always
+    tty: true
+    volumes:
+      - .:/rails
+      - app-storage:/rails/storage
+    ports:
+      - "3000:3000"
+
+  chrome:
+    # Currently, Apple M1 is only supported in unnumbered "latest" versions.
+    # See https://github.com/browserless/chrome/issues/1393
+    image: browserless/chrome:latest
+    container_name: fn-chrome
+    ports:
+      - 3333:3333
+    # Mount application source code to support file uploading
+    # (otherwise Chrome won't be able to find files).
+    # NOTE: Make sure you use absolute paths in `#attach_file`.
+    volumes:
+      - .:/app:cached # change it for your rails' container directory
+    environment:
+      # By default, it uses 3000, which is typically used by Rails.
+      PORT: 3333
+      # Set connection timeout to avoid timeout exception during debugging
+      # https://docs.browserless.io/docs/docker.html#connection-timeout
+      CONNECTION_TIMEOUT: 600000
+
   redis:
     image: redis:alpine3.8
-    container_name: redis
+    container_name: fn-redis
     mem_limit: 256m
     volumes:
       - redis-data:/var/lib/redis/data
@@ -26,23 +62,6 @@ services:
     logging:
       driver: none
 
-  ruby:
-    build: .
-    environment:
-      - POSTGRES_HOST=${POSTGRES_HOST}
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
-    container_name: ruby
-    working_dir: /rails
-    restart: always
-    tty: true
-    volumes:
-      - .:/rails
-      - app-storage:/rails/storage
-    ports:
-      - "3000:3000"
 volumes:
   db: {}
   redis-data: {}
