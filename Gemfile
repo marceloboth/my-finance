@@ -29,6 +29,7 @@ end
 group :development do
   gem 'web-console', '>= 4.1.0'
   gem 'meta_request'
+  gem 'hotwire-livereload'
 
   gem 'foreman', require: false
   gem 'brakeman'
