@@ -43,8 +43,7 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
   # Devise helpers
-  config.include Devise::Test::ControllerHelpers, type: :controller
-  config.include Devise::Test::IntegrationHelpers, type: :feature
+  config.include FactoryBot::Syntax::Methods
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{Rails.root}/spec/fixtures"
@@ -76,11 +75,4 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-end
-
-require 'capybara/cuprite'
-Capybara.javascript_driver = :cuprite
-Capybara.register_driver(:cuprite) do |app|
-  # Capybara::Cuprite::Driver.new(app, window_size: [1200, 800])
-  Capybara::Cuprite::Driver.new(app, browser_options: { 'no-sandbox': nil })
 end

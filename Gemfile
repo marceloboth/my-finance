@@ -24,6 +24,8 @@ group :development, :test do
   gem 'pry-meta'
   gem 'rspec-rails', '~> 4.0.0'
   gem 'capybara'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do
