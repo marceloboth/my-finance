@@ -71,7 +71,6 @@ describe 'Account Management' do
 
       fill_in 'Email', with: 'new.email@mail.com'
       fill_in 'Name', with: 'New Name'
-      fill_in 'Individual', with: '987654321'
       fill_in 'Current password', with: user.password
 
       click_button 'Update'
