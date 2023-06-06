@@ -77,6 +77,7 @@ describe 'Account Management' do
       click_button 'Update'
 
       expect(page).to have_content 'Your account has been updated successfully.'
+      expect(user.reload.name).to eq 'New Name'
     end
   end
 
