@@ -16,6 +16,20 @@
         </div>
 
         <div>
+          <%= f.label :name, class: "block text-sm font-medium text-gray-700" %>
+          <div class="mt-1">
+            <%= f.text_field :name, class: "block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" %>
+          </div>
+        </div>
+
+        <div>
+          <%= f.label :individual_id, class: "block text-sm font-medium text-gray-700" %>
+          <div class="mt-1">
+            <%= f.text_field :individual_id, class: "block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" %>
+          </div>
+        </div>
+
+        <div>
           <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
           <div class="mt-1">
             <% if @minimum_password_length %>

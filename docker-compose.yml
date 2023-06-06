@@ -20,6 +20,7 @@ services:
       - POSTGRES_HOST=${POSTGRES_HOST}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - REDIS_URL=${REDIS_URL}
       - CHROME_URL=http://chrome:3333
     container_name: fn-ruby
     working_dir: /rails

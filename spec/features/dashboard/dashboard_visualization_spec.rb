@@ -8,7 +8,7 @@ describe 'Dashboard' do
     visit root_path
   end
 
-  let(:user) { User.create!(email: 'user@mail.com', password: 'pass123', password_confirmation: 'pass123') }
+  let(:user) { create(:user) }
 
   it 'will have access to data visualization' do
     within '#desktop-nav' do

@@ -8,7 +8,7 @@ describe 'Create incoming money' do
     visit root_path
   end
 
-  let(:user) { User.create!(email: 'user@mail.com', password: 'pass123', password_confirmation: 'pass123') }
+  let(:user) { create(:user) }
 
   it 'by navigating to incomes and filling the form' do
     within '#desktop-nav' do
