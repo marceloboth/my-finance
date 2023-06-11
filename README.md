@@ -1,24 +1,56 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Project
 
-Things you may want to cover:
 
-* Ruby version
 
-* System dependencies
+## Libraries
+- Ruby 3.2
+- Rails 7
+- Tailwind CSS
+- ViewComponents
+- Stimulus.js
+- Postgres
+- DDD (Domain Driven Design) gems from Arkency
 
-* Configuration
+## Installation and running locally
 
-* Database creation
+This project as a docker setup for development and test.
 
-* Database initialization
+First create a `.env` file on the root folder and place this ENV variables to set on the docker containers:
+```
+RAILS_ENV=development
+POSTGRES_HOST=db
+POSTGRES_USER=admin
+POSTGRES_PASSWORD=password123
+```
 
-* How to run the test suite
+Run docker compose to build all containers
 
-* Services (job queues, cache servers, search engines, etc.)
+```shell
+docker compose up -d --build
+```
 
-* Deployment instructions
+Install dependencies and create the database
 
-* ...
+```shell
+docker exec -it fn-ruby bin/docker-entrypoint
+```
+
+Start the web server and tailwind stuffs:
+
+```shell
+docker exec -it fn-ruby bin/dev
+```
+
+open [the application](http://localhost:3000) and fill out the quiz.
+
+
+To run the specs:
+
+```shell
+docker exec -it fn-ruby bundle exec rspec
+```
+
+Coverage expected is 100%:
+![coverage.png](docs%2Fcoverage.png)
