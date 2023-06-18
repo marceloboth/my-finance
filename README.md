@@ -2,6 +2,7 @@
 
 ## Project
 
+This is a simple application to help manage my finances. It has a also the meaning to be a playground for me to test new technologies and practices. 
 
 
 ## Libraries
