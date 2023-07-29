@@ -364,6 +364,7 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
+    table_print (1.5.7)
     thor (1.2.2)
     timeout (0.3.2)
     turbo-rails (1.4.0)
@@ -430,6 +431,7 @@ DEPENDENCIES
   simplecov
   sprockets-rails
   stimulus-rails
+  table_print
   turbo-rails
   view_component
   web-console (>= 4.1.0)

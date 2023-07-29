@@ -19,6 +19,7 @@ gem 'stimulus-rails'
 gem 'turbo-rails'
 # gem 'nokogiri', '1.13.9'
 gem 'devise'
+gem 'table_print'
 
 group :development, :test do
   gem 'pry-meta'
