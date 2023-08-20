@@ -7,6 +7,7 @@ class IncomesController < AuthenticatedController
 
   def create
     command = Incoming::Commands::CreateIncome.new(
+      id: params[:id],
       description: params[:description],
       value: params[:value],
       received_at: Date.parse(params[:received_at].to_s)

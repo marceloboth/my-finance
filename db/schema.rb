@@ -37,12 +37,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_19_130247) do
     t.index ["stream", "position"], name: "index_event_store_events_in_streams_on_stream_and_position", unique: true
   end
 
-  create_table "incomes", force: :cascade do |t|
-    t.decimal "value"
-    t.string "description"
+  create_table "incomes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.decimal "value", null: false
+    t.string "description", null: false
+    t.datetime "received_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "received_at"
   end
 
   create_table "users", force: :cascade do |t|
