@@ -13,7 +13,8 @@ module Incoming
             id: command.id,
             value: command.value,
             description: command.description,
-            received_at: command.received_at
+            received_at: command.received_at,
+            user_id: command.user_id
           )
         end
       end

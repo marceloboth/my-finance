@@ -1,6 +1,6 @@
 class IncomesController < AuthenticatedController
   def index
-    @incomes = Incomes::Income.all
+    @incomes = Incomes::Income.where(user_id: current_user.id)
   end
 
   def new; end
@@ -10,7 +10,8 @@ class IncomesController < AuthenticatedController
       id: params[:id],
       description: params[:description],
       value: params[:value],
-      received_at: Date.parse(params[:received_at].to_s)
+      received_at: Date.parse(params[:received_at].to_s),
+      user_id: current_user.id
     )
     command_bus.call(command)
 

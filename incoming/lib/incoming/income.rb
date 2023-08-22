@@ -8,8 +8,8 @@ module Incoming
       @state = :new
     end
 
-    def create(id: , value:, description:, received_at:)
-      apply(Events::IncomeCreated.new(data: { id:, value:, description:, received_at: }))
+    def create(id: , value:, description:, received_at:, user_id:)
+      apply(Events::IncomeCreated.new(data: { id:, value:, description:, received_at:, user_id: }))
     end
 
     on Events::IncomeCreated do |_event|
