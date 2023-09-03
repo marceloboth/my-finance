@@ -16,6 +16,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'arkency-command_bus'
   spec.add_dependency 'dry-struct'
   spec.add_dependency 'dry-types'
+  spec.add_dependency 'dry-monads'
+  spec.add_dependency 'dry-logic'
+  spec.add_dependency 'dry-validation'
   spec.add_dependency 'ruby_event_store', '~> 2.6.0'
   spec.add_dependency 'ruby_event_store-transformations'
 
