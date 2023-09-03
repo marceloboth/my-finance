@@ -1,24 +1,23 @@
-<%= form_with(url: incomes_path, html: { class: 'space-y-6' }) do |f| %>
+<%= form_with(url: submit_url, method: submit_method, html: { class: 'space-y-6' }) do |f| %>
   <div class="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
-    <%= f.hidden_field :id, value: SecureRandom.uuid %>
     <div>
       <%= f.label :description, class: "block text-sm font-medium text-gray-700" %>
       <div class="mt-1">
-        <%= f.text_field :description, autofocus: true, class: "block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" %>
+        <%= f.text_field :description, value: description, autofocus: true, class: "block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" %>
       </div>
     </div>
 
     <div>
       <%= f.label :value, class: "block text-sm font-medium text-gray-700" %>
       <div class="mt-1">
-        <%= f.text_field :value, autofocus: true, class: "block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" %>
+        <%= f.text_field :value, value: value, autofocus: true, class: "block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" %>
       </div>
     </div>
 
     <div>
       <%= f.label :received_at, class: "block text-sm font-medium text-gray-700" %>
       <div class="mt-1">
-        <%= f.date_field :received_at, autofocus: true, class: "block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" %>
+        <%= f.date_field :received_at, value: received_at, autofocus: true, class: "block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" %>
       </div>
     </div>
 

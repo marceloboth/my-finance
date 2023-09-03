@@ -1,0 +1,10 @@
+<%= render Core::ModalComponent.new do |m| %>
+  <%= m.with_title { 'Edit income '} %>
+  <%= m.with_description do %>
+    <%= @errors %>
+  <% end %>
+  
+  <%= m.with_body do %>
+    <%= render Incomes::FormComponent.new(income: @income) %>
+  <% end %>
+<% end %>

@@ -1,6 +1,7 @@
 <%= render Core::ModalComponent.new do |m| %>
   <%= m.with_title { 'New income '} %>
   <%= m.with_description do %>
+    <%= @errors %>
     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius aliquam laudantium explicabo pariatur iste dolorem animi vitae error totam. At sapiente aliquam accusamus facere veritatis.
   <% end %>
   
