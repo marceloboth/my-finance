@@ -19,6 +19,7 @@ Rails.configuration.to_prepare do
     # store.subscribe_to_all_events(lambda { |event| Rails.logger.info(event.event_type) })
 
     store.subscribe(Incomes::RegisterIncome, to: [Incoming::Events::IncomeCreated])
+    store.subscribe(Incomes::ChangeIncome, to: [Incoming::Events::IncomeUpdated])
 
     store.subscribe_to_all_events(RailsEventStore::LinkByEventType.new)
     store.subscribe_to_all_events(RailsEventStore::LinkByCorrelationId.new)
@@ -30,5 +31,6 @@ Rails.configuration.to_prepare do
     # bus.register(PrintInvoice, Invoicing::OnPrint.new)
     # bus.register(SubmitOrder,  ->(cmd) { Ordering::OnSubmitOrder.new.call(cmd) })
     bus.register(Incoming::Commands::CreateIncome, Incoming::Services::OnCreateMoneyIncome.new)
+    bus.register(Incoming::Commands::UpdateIncome, Incoming::Services::OnUpdateMoneyIncome.new)
   end
 end

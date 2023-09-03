@@ -1,16 +1,21 @@
-<%= render Core::SumarizedTableComponent.new do |t| %>
+<%= render Core::SumarizedTableComponent.new(id: 'incomes-records') do |t| %>
   <%= t.with_new_record_link do %>
-    <%= link_to 'New Income', new_income_path, data: { turbo_frame: 'modal' }, class: 'inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto' %>
+    <%= link_to 'New Income', new_income_path, data: { turbo_frame: 'modal' }, class: action_button_css %>
   <% end %>
 
   <% @incomes.each do |income| %>
     <%= t.with_row do %>
-      <tr class="border-b border-gray-200">
-        <td class="py-4 pl-4 pr-3 text-sm sm:pl-6 md:pl-0">
+      <tr class="border-b border-gray-200" id=<%= dom_id(income) %>>
+        <td class="py-3 pl-4 pr-3 text-sm sm:pl-6 md:pl-0">
           <div class="font-medium text-gray-900"><%= income.description %></div>
         </td>
-        <td class="hidden py-4 px-3 text-right text-sm text-gray-500 sm:table-cell"><%= l(income.received_at, format: "%d/%m/%Y") %></td>
-        <td class="py-4 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-6 md:pr-0"><%= income.value %></td>
+        <td class="hidden py-3 px-3 text-right text-sm text-gray-500 sm:table-cell"><%= l(income.received_at, format: "%d/%m/%Y") %></td>
+        <td class="py-3 pl-3 pr-3 text-right text-sm text-gray-500 sm:pr-6 md:pr-0"><%= income.value %></td>
+        <td class="py-3 pl-3 pr-3 text-center text-sm">
+          <%= link_to 'Edit', edit_income_path(income), data: { turbo_frame: 'modal' }, class: action_button_css %>
+          |
+          <%= link_to 'Delete', income_path(income), method: :delete, data: { confirm: 'Are you sure?' }, class: danger_action_button_css %>
+        </td>
       </tr>
     <% end %>
   <% end %>

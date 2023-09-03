@@ -6,5 +6,10 @@ module Core
     renders_many :rows
     renders_one :extra_sum
     renders_one :total_sum
+
+    attr_reader :id
+    def initialize(id:)
+      @id = id
+    end
   end
 end
