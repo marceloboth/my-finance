@@ -18,8 +18,8 @@ Rails.configuration.to_prepare do
     # store.subscribe(lambda { |event| SendOrderConfirmation.new.call(event) }, to: [OrderSubmitted])
     # store.subscribe_to_all_events(lambda { |event| Rails.logger.info(event.event_type) })
 
-    store.subscribe(Incomes::RegisterIncome, to: [Incoming::Events::IncomeCreated])
-    store.subscribe(Incomes::ChangeIncome, to: [Incoming::Events::IncomeUpdated])
+    store.subscribe(Incomes::Register, to: [Incoming::Events::IncomeCreated])
+    store.subscribe(Incomes::Change, to: [Incoming::Events::IncomeUpdated])
 
     store.subscribe_to_all_events(RailsEventStore::LinkByEventType.new)
     store.subscribe_to_all_events(RailsEventStore::LinkByCorrelationId.new)

@@ -1,0 +1,23 @@
+module IncomesContract
+  class Create < IncomeContract
+    params do
+      required(:id).value(:string)
+      required(:description).value(:string)
+      required(:value).value(:float)
+      required(:user_id).value(:integer)
+
+      optional(:received_at).value(:date)
+    end
+  end
+
+  class Update < IncomeContract
+    params do
+      required(:id).value(:string)
+      required(:description).value(:string)
+      required(:value).value(:float)
+      required(:user_id).value(:integer)
+
+      optional(:received_at).value(:date)
+    end
+  end
+end

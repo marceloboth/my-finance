@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :incomes_income, class: Incomes::Income do
+  factory :income do
     id { SecureRandom.uuid }
     description { Faker::Name.name }
     value { Faker::Number.decimal(l_digits: 2) }

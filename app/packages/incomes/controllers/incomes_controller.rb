@@ -1,13 +1,13 @@
 class IncomesController < AuthenticatedController
   def index
-    @incomes = Incomes::Income.where(user_id: current_user.id)
+    @incomes = Income.where(user_id: current_user.id)
   end
 
   def new
   end
 
   def create
-    contract = Income::NewContract.new.(
+    contract = IncomesContract::Create.new.(
       id: SecureRandom.uuid,
       description: params[:description],
       value: params[:value],
@@ -28,11 +28,11 @@ class IncomesController < AuthenticatedController
   end
 
   def edit
-    @income = Incomes::Income.find(params[:id])
+    @income = Income.find(params[:id])
   end
 
   def update
-    contract = Income::UpdateContract.new.(
+    contract = IncomesContract::Update.new.(
       id: params[:id],
       description: params[:description],
       value: params[:value],
