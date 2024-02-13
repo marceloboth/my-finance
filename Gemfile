@@ -58,6 +58,7 @@ group :production do
 end
 
 # Architectural
+gem 'packwerk'
 gem 'rails_event_store', '~> 2.6.0'
 gem 'infra', path: './infra'
 
