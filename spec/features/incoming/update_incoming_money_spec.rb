@@ -9,14 +9,14 @@ describe 'Update incoming money' do
   end
 
   let(:user) { create(:user) }
-  let!(:income) { create(:incomes_income, user_id: user.id) }
+  let!(:income) { create(:income, user_id: user.id) }
 
   it 'by navigating to incomes and filling the form' do
     within '#desktop-nav' do
       click_link 'Incomes'
     end
 
-    within "#incomes_income_#{income.id}" do
+    within "#income_#{income.id}" do
       click_link 'Edit'
     end
 

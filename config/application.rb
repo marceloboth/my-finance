@@ -23,7 +23,7 @@ Bundler.require(*Rails.groups)
 module Financial
   class Application < Rails::Application
     config.paths.add 'infra/lib', eager_load: true
-    config.paths.add 'incoming/lib', eager_load: true
+    config.eager_load_paths += Dir.glob("#{root}/domains/packages/*/lib")
 
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0

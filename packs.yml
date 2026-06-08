@@ -1,0 +1,5 @@
+pack_paths:
+  - packages/*
+  - domains/packages/*
+  - infra/*
+  - .
