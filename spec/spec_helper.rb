@@ -16,6 +16,12 @@
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  # %w[controllers requests mailers models jobs features].each do |type|
+  #   config.define_derived_metadata(
+  #     file_path: Regexp.new("packages/.*/spec/#{type}")
+  #   ) { |metadata| metadata[:type] = type.singularize.to_sym }
+  # end
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

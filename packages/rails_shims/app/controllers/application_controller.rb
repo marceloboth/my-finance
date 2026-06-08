@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  append_view_path(Dir.glob(Rails.root.join('app/packages/*/views')))
+  # append_view_path(Rails.root.glob('packages/*/app/views'))
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 

@@ -7,7 +7,7 @@ class IncomesController < AuthenticatedController
   end
 
   def create
-    contract = IncomesContract::Create.new.(
+    contract = IncomesContract::Create.new.call(
       id: SecureRandom.uuid,
       description: params[:description],
       value: params[:value],
@@ -28,11 +28,13 @@ class IncomesController < AuthenticatedController
   end
 
   def edit
-    @income = Income.find(params[:id])
+    if params[:id].present?
+      @income = Income.find(params[:id])
+    end
   end
 
   def update
-    contract = IncomesContract::Update.new.(
+    contract = IncomesContract::Update.new.call(
       id: params[:id],
       description: params[:description],
       value: params[:value],
@@ -57,11 +59,11 @@ class IncomesController < AuthenticatedController
 
   def create_command(income: {})
     command = Incoming::Commands::CreateIncome.new(income)
-    command_bus.(command)
+    command_bus.call(command)
   end
 
   def update_command(income: {})
     command = Incoming::Commands::UpdateIncome.new(income)
-    command_bus.(command)
+    command_bus.call(command)
   end
 end

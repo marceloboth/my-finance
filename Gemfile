@@ -27,6 +27,7 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'shoulda-matchers'
 end
 
 group :development do
@@ -59,6 +60,8 @@ end
 
 # Architectural
 gem 'packwerk'
+gem 'packs'
+gem 'packs-rails'
 gem 'rails_event_store', '~> 2.6.0'
 gem 'infra', path: './infra'
 

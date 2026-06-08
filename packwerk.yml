@@ -6,8 +6,11 @@
 # - "**/*.{rb,rake,erb}"
 
 # List of patterns for folder paths to exclude
-# exclude:
-# - "{bin,node_modules,script,tmp,vendor}/**/*"
+exclude:
+ - "{bin,node_modules,script,tmp,vendor}/**/*"
+ - "vendor/bundle/**/*"
+ - "**/lig/tasks/**/*.rake"
+ - "spec/support/**/*"
 
 # Patterns to find package configuration files
 # package_paths: "**/"
